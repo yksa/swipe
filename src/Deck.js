@@ -21,7 +21,7 @@ export class Deck extends Component {
     });
   }
   render() {
-    return <View>{this.renderCards()}</View>;
+    return <View {...this.panResponder.panHandlers}>{this.renderCards()}</View>;
   }
 }
 
