@@ -1,52 +1,62 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image, Button } from "react-native";
 import Deck from "./src/Deck";
 
 const DATA = [
   {
     id: 1,
     text: "Card #1",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg",
+    uri: "https://picsum.photos/800/200",
   },
   {
     id: 2,
     text: "Card #2",
-    uri: "http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg",
+    uri: "https://picsum.photos/800/201",
   },
   {
     id: 3,
     text: "Card #3",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg",
+    uri: "https://picsum.photos/800/202",
   },
   {
     id: 4,
     text: "Card #4",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg",
+    uri: "https://picsum.photos/800/203",
   },
   {
     id: 5,
     text: "Card #5",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg",
+    uri: "https://picsum.photos/800/204",
   },
   {
     id: 6,
     text: "Card #6",
-    uri: "http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg",
+    uri: "https://picsum.photos/800/205",
   },
   {
     id: 7,
     text: "Card #7",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg",
+    uri: "https://picsum.photos/800/206",
   },
   {
     id: 8,
     text: "Card #8",
-    uri: "http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg",
+    uri: "https://picsum.photos/800/207",
   },
 ];
 
 export default function App() {
   const renderCard = (item) => {
-    return <Text>{item.text}</Text>;
+    return (
+      <View style={styles.card} key={item.id}>
+        <View></View>
+        <Image source={{ uri: item.uri }} height={200} />
+        <Text>{item.text}</Text>
+        <Text style={{ marginBottom: 10 }}>another text</Text>
+        <View style={{ marginHorizontal: 40 }}>
+          <Button title="View Now!" color="#03A9F4" />
+        </View>
+      </View>
+    );
   };
 
   return (
@@ -60,5 +70,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  card: {
+    borderWidth: 1,
+    borderColor: "gray",
+    margin: 4,
+    marginHorizontal: 10,
+    paddingBottom: 8,
   },
 });
