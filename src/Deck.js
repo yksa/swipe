@@ -19,19 +19,22 @@ export class Deck extends Component {
     this.position = position;
   }
   renderCards() {
-    return this.props.data.map((item) => {
+    return this.props.data.map((item, index) => {
+      if (index === 0) {
+        return (
+          <Animated.View
+            style={this.position.getLayout()}
+            {...this.panResponder.panHandlers}
+          >
+            {this.props.renderCard(item)}
+          </Animated.View>
+        );
+      }
       return this.props.renderCard(item);
     });
   }
   render() {
-    return (
-      <Animated.View
-        style={this.position.getLayout()}
-        {...this.panResponder.panHandlers}
-      >
-        {this.renderCards()}
-      </Animated.View>
-    );
+    return <View>{this.renderCards()}</View>;
   }
 }
 
