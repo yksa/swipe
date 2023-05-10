@@ -18,12 +18,21 @@ export class Deck extends Component {
     this.panResponder = panResponder;
     this.position = position;
   }
+
+  _getCardStyle() {
+    return {
+      ...this.position.getLayout(),
+      transform: [{ rotate: "45deg" }],
+    };
+  }
+
   renderCards() {
     return this.props.data.map((item, index) => {
       if (index === 0) {
         return (
           <Animated.View
-            style={this.position.getLayout()}
+            key={item.id}
+            style={this._getCardStyle()}
             {...this.panResponder.panHandlers}
           >
             {this.props.renderCard(item)}
