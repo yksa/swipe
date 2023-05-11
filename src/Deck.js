@@ -76,9 +76,9 @@ const Deck = (props) => {
     },
     onPanResponderRelease: (evt, gestureState) => {
       if (gestureState.dx > SWIPE_THRESHOLD) {
-        _forceSwipeRight();
+        _forceSwipe("right");
       } else if (gestureState.dx < -SWIPE_THRESHOLD) {
-        _forceSwipeLeft();
+        _forceSwipe("left");
       } else _resetPosition();
     },
   });
@@ -90,17 +90,10 @@ const Deck = (props) => {
     }).start();
   };
 
-  const _forceSwipeRight = () => {
+  const _forceSwipe = (direction) => {
+    const x = direction === "right" ? SCREEN_WIDTH : -SCREEN_WIDTH;
     Animated.timing(position, {
-      toValue: { x: SCREEN_WIDTH, y: 0 },
-      useNativeDriver: true,
-      duration: SWIPE_OUT_DURATION,
-    }).start();
-  };
-
-  const _forceSwipeLeft = () => {
-    Animated.timing(position, {
-      toValue: { x: -SCREEN_WIDTH, y: 0 },
+      toValue: { x, y: 0 },
       useNativeDriver: true,
       duration: SWIPE_OUT_DURATION,
     }).start();
