@@ -59,9 +59,18 @@ export default function App() {
     );
   };
 
+  const _onSwipeLeft = () => {};
+
+  const _onSwipeRight = () => {};
+
   return (
     <View style={styles.container}>
-      <Deck data={DATA} renderCard={renderCard} />
+      <Deck
+        data={DATA}
+        renderCard={renderCard}
+        onSwipeLeft={_onSwipeLeft}
+        onSwipeRight={_onSwipeRight}
+      />
     </View>
   );
 }

@@ -96,7 +96,13 @@ const Deck = (props) => {
       toValue: { x, y: 0 },
       useNativeDriver: true,
       duration: SWIPE_OUT_DURATION,
-    }).start();
+    }).start(() => _onSwipeComplete(direction));
+  };
+
+  const _onSwipeComplete = (direction) => {
+    const { onSwipeLeft, onSwipeRight } = props;
+
+    direction === "right" ? onSwipeRight() : onSwipeLeft();
   };
 
   const _getCardStyle = () => {
