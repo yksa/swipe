@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { View, Animated, PanResponder, Dimensions } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -67,6 +67,9 @@ const SWIPE_OUT_DURATION = 250;
 // }
 
 const Deck = (props) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  console.log("currentIndex ", currentIndex);
+
   const position = new Animated.ValueXY();
 
   const panResponder = PanResponder.create({
@@ -100,9 +103,12 @@ const Deck = (props) => {
   };
 
   const _onSwipeComplete = (direction) => {
-    const { onSwipeLeft, onSwipeRight } = props;
+    const { onSwipeLeft, onSwipeRight, data } = props;
+    const item = data[currentIndex];
 
-    direction === "right" ? onSwipeRight() : onSwipeLeft();
+    direction === "right" ? onSwipeRight(item) : onSwipeLeft(item);
+    setCurrentIndex(currentIndex + 1);
+    position.setValue({ x: 0, y: 0 });
   };
 
   const _getCardStyle = () => {
@@ -118,7 +124,8 @@ const Deck = (props) => {
 
   const renderCards = () => {
     return props.data.map((item, index) => {
-      if (index === 0) {
+      if (index < currentIndex) return null;
+      if (index === currentIndex) {
         return (
           <Animated.View
             key={item.id}
