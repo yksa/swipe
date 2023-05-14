@@ -123,6 +123,8 @@ const Deck = (props) => {
   };
 
   const renderCards = () => {
+    if (currentIndex >= props.data.length) return props.renderNoMoreCards();
+
     return props.data.map((item, index) => {
       if (index < currentIndex) return null;
       if (index === currentIndex) {

@@ -48,7 +48,6 @@ export default function App() {
   const renderCard = (item) => {
     return (
       <View style={styles.card} key={item.id}>
-        <View></View>
         <Image source={{ uri: item.uri }} height={200} />
         <Text>{item.text}</Text>
         <Text style={{ marginBottom: 10 }}>another text</Text>
@@ -63,6 +62,19 @@ export default function App() {
 
   const _onSwipeRight = () => {};
 
+  const _renderNoMoreCards = () => {
+    console.log("_renderNoMoreCards");
+    return (
+      <View style={styles.card}>
+        <Image source={{ uri: "https://picsum.photos/800/208" }} height={200} />
+        <Text style={{ marginBottom: 10 }}>There is no more content here.</Text>
+        <View style={{ marginHorizontal: 40 }}>
+          <Button title="Get more!" color="#03A9F4" />
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Deck
@@ -70,6 +82,7 @@ export default function App() {
         renderCard={renderCard}
         onSwipeLeft={_onSwipeLeft}
         onSwipeRight={_onSwipeRight}
+        renderNoMoreCards={_renderNoMoreCards}
       />
     </View>
   );
