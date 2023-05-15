@@ -5,11 +5,21 @@ import {
   PanResponder,
   Dimensions,
   StyleSheet,
+  LayoutAnimation,
+  UIManager,
+  Platform,
 } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SWIPE_THRESHOLD = 0.3 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
+
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 // export class Deck extends Component {
 //   constructor(props) {
@@ -112,6 +122,7 @@ const Deck = (props) => {
     const item = data[currentIndex];
 
     direction === "right" ? onSwipeRight(item) : onSwipeLeft(item);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     setCurrentIndex(currentIndex + 1);
     position.setValue({ x: 0, y: 0 });
   };
