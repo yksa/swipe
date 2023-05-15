@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import {
   View,
   Animated,
@@ -84,6 +84,7 @@ if (
 
 const Deck = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const firstRender = useRef(true);
 
   const position = new Animated.ValueXY();
 
@@ -166,6 +167,16 @@ const Deck = (props) => {
       })
       .reverse();
   };
+
+  useEffect(() => {
+    // if(firstRender.current)
+    console.log("firstRender ", firstRender.current);
+    if (firstRender.current) firstRender.current = false;
+    else {
+      console.log("data changes ###");
+      setCurrentIndex(0);
+    }
+  }, [props.data]);
 
   return <View>{renderCards()}</View>;
 };
