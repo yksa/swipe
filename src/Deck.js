@@ -153,14 +153,14 @@ const Deck = (props) => {
       .reverse();
   };
 
-  return <View>{renderCards()}</View>;
+  return <Animated.View>{renderCards()}</Animated.View>;
 };
 
 const styles = StyleSheet.create({
   cardStyle: {
     position: "absolute",
     width: SCREEN_WIDTH,
-    backgroundColor: "pink",
+    backgroundColor: "white",
   },
 });
 
