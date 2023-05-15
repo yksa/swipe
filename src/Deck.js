@@ -145,15 +145,18 @@ const Deck = (props) => {
           );
         }
         return (
-          <View key={item.id} style={styles.cardStyle}>
+          <Animated.View
+            key={item.id}
+            style={[styles.cardStyle, { top: 10 * (index - currentIndex) }]}
+          >
             {props.renderCard(item)}
-          </View>
+          </Animated.View>
         );
       })
       .reverse();
   };
 
-  return <Animated.View>{renderCards()}</Animated.View>;
+  return <View>{renderCards()}</View>;
 };
 
 const styles = StyleSheet.create({

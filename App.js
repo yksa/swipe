@@ -63,7 +63,6 @@ export default function App() {
   const _onSwipeRight = () => {};
 
   const _renderNoMoreCards = () => {
-    console.log("_renderNoMoreCards");
     return (
       <View style={styles.card}>
         <Image source={{ uri: "https://picsum.photos/800/208" }} height={200} />
